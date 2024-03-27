@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Processing Tools</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+      h1 {
+        color: #333;
+      }
+      form {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      label,
+      input,
+      p {
+        display: block;
+        margin-bottom: 10px;
+      }
+      input[type="radio"] {
+        display: inline-block;
+        margin-right: 5px;
+      }
+      input[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .options {
+        margin-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Image Processing</h1>
+    {% if message %}
+    <p>{{ message }}</p>
+    {% endif %}
+
+    <form action="/" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="file">Upload file:</label>
+        <input type="file" name="file" />
+      </div>
+
+      <div class="form-group">
+        <p><b>Select Option:</b></p>
+        <div class="options">
+          <input
+            type="radio"
+            id="remove_bg"
+            name="option"
+            value="remove_bg"
+            checked
+          />
+          <label for="remove_bg">Remove Background</label>
+          <input
+            type="radio"
+            id="remove_metadata"
+            name="option"
+            value="remove_metadata"
+          />
+          <label for="remove_metadata">Remove Metadata</label>
+          <input type="radio" id="resize" name="option" value="resize" />
+          <label for="resize">Resize Image</label>
+          <input type="radio" id="crop" name="option" value="crop" />
+          <label for="crop">Crop Image</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input
+          type="number"
+          name="resize_width"
+          placeholder="Width for resize or crop"
+        />
+        <input
+          type="number"
+          name="resize_height"
+          placeholder="Height for resize or crop"
+        />
+        <input
+          type="number"
+          name="crop_start_x"
+          placeholder="Start X for crop"
+        />
+        <input
+          type="number"
+          name="crop_start_y"
+          placeholder="Start Y for crop"
+        />
+      </div>
+
+      <input type="submit" value="Process" />
+    </form>
+  </body>
+</html>
